@@ -1,0 +1,17 @@
+development:
+  adapter: mysql
+  socket: /var/run/mysqld/mysqld.sock
+  encoding: utf8
+  database: adelphus_development
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql
+  socket: /var/run/mysqld/mysqld.sock
+  encoding: utf8
+  database: adelphus_test
+  username: root
+  password:
+  host: localhost

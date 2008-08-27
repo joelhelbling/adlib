@@ -1,0 +1,7 @@
+<% form_for :adlib_snippet, :url => adlib_page_adlib_snippets_path(params[:adlib_page_id]) do |f| -%>
+  <p>
+    <%= f.label :content %><br/>
+    <%= f.text_area :content %>
+  </p>
+  <p><%= submit_tag 'Save' %></p>
+<% end -%>

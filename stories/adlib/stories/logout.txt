@@ -1,0 +1,21 @@
+Story: logging out
+  As an adlib user
+  I want to logout of adlib
+  So that others cannot manage content
+  
+  Scenario: when logged in
+    Given an adlib user with username: 'johndoe' and password: 'password' exists
+    And I am logged into adlib as 'johndoe' with password 'password'
+    
+    When I visit '/adlib/logout'
+    
+    Then I should be on the page '/'
+    And I should not be logged into adlib
+    
+  Scenario: when not logged in
+    Given I am not logged into adlib
+    
+    When I visit '/adlib/logout'
+    
+    Then I should be on the page '/'
+    And I should not be logged into adlib

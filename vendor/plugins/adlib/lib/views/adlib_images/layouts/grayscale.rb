@@ -1,0 +1,1 @@
+img = img.quantize(256, Magick::GRAYColorspace) 

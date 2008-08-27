@@ -1,0 +1,51 @@
+Story: logging in
+  As an adlib user
+  I want to login to adlib
+  So that I can manage content
+  
+  Scenario: with valid username and password
+    Given an adlib user with username:'johndoe' and password:'password' exists
+    And I am not logged into adlib
+    
+    When I visit '/adlib/login'
+    And fill in Username with 'johndoe'
+    And fill in Password with 'password'
+    And click the Log in button
+    
+    Then I should be on the page '/'
+    And I should be logged into adlib as 'johndoe'
+  
+  Scenario: with invalid password
+    Given an adlib user with username:'johndoe' and password:'password' exists
+    And I am not logged into adlib
+    
+    When I visit '/adlib/login'
+    And fill in Username with 'johndoe'
+    And fill in Password with 'wrong'
+    And click the Log in button
+    
+    Then I should be on the page '/adlib/login'
+    And I should see the error 'Login failed.'
+    And I should not be logged into adlib
+  
+  Scenario: with non-existant username
+    Given no adlib user with username:'nonexistant' exists
+    And I am not logged into adlib
+    
+    When I visit '/adlib/login'
+    And fill in Username with 'nonexistant'
+    And fill in Password with 'irrelevant'
+    And click the Log in button
+    
+    Then I should be on the page '/adlib/login'
+    And I should see the error 'Login failed.'
+    And I should not be logged into adlib
+ 
+  Scenario: already logged in
+    Given an adlib user with username:'johndoe' and password:'password' exists
+    And I am logged into adlib as 'johndoe' with password 'password'
+
+    When I visit '/adlib/login'
+
+    Then I should be on the page '/'
+    And I should be logged into adlib as 'johndoe'
